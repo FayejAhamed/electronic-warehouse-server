@@ -33,6 +33,24 @@ async function run() {
             const update= await electronicsCollection.findOne(query);
             res.send(update);
         });
+
+        // update quantity
+
+        app.put('/quantity/:id',async(req,res)=>{
+            const id = req.params.id;
+            const user = req.body;
+            const filter = {_id: ObjectId(id)};
+            const options = { upsert: true };
+            const updateDoc = {
+              $set: {
+                ...user
+               
+              },
+            };
+            const result = await electronicsCollection.updateOne(filter, updateDoc, options);
+            res.send(result)
+          })
+
     }
     finally {
 

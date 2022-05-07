@@ -25,7 +25,14 @@ async function run() {
             const cursor = electronicsCollection.find(query);
             const products = await cursor.toArray();
             res.send(products);
-        })
+        });
+        //prodcutId api
+        app.get('/update/:id',async(req,res) =>{
+            const id =req.params.id;
+            const query ={_id: ObjectId(id)};
+            const update= await electronicsCollection.findOne(query);
+            res.send(update);
+        });
     }
     finally {
 

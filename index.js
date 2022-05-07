@@ -66,7 +66,15 @@ async function run() {
             };
             const result = await electronicsCollection.updateOne(filter, updateDoc, options);
             res.send(result)
-          })
+          });
+
+          // delete products
+          app.delete('/update/:id', async(req, res) =>{
+            const id = req.params.id;
+            const query = {_id: ObjectId(id)};
+            const result = await electronicsCollection.deleteOne(query);
+            res.send(result);
+        })
 
     }
     finally {

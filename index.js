@@ -76,6 +76,12 @@ async function run() {
             res.send(result);
         })
 
+        //add new items
+        app.post('/inventoryitems', async (req, res) => {
+            const newService = req.body;
+            const result = await electronicsCollection.insertOne(newService);
+            res.send(result);
+        });
     }
     finally {
 

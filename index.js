@@ -69,6 +69,7 @@ async function run() {
             const update= await electronicsCollection.findOne(query);
             res.send(update);
         });
+    
 
         // update quantity
 
@@ -103,6 +104,12 @@ async function run() {
             const result = await electronicsCollection.updateOne(filter, updateDoc, options);
             res.send(result)
           });
+          app.get('/myorder/:id',async(req,res) =>{
+            const id =req.params.id;
+            const query ={_id: ObjectId(id)};
+            const update= await electronicsCollection.findOne(query);
+            res.send(update);
+        });
 
           // delete products
           app.delete('/update/:id', async(req, res) =>{
